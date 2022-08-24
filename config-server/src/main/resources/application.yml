@@ -7,6 +7,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/angelestrada14019/spring-cloud-design-patterns
+          uri: https://github.com/angelestrada14019/microservice-catalog-movies
           search-paths: config-data
-          default-label: main
+          default-label: master
