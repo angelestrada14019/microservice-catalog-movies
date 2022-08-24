@@ -10,7 +10,7 @@ eureka:
 spring:
   cloud:
     gateway:
-      default-filters: LoggingGatewayFilterFactory
+      # default-filters: LoggingGatewayFilterFactory
       discovery:
         locator:
           enabled: true
