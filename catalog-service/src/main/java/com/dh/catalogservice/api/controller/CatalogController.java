@@ -2,6 +2,7 @@ package com.dh.catalogservice.api.controller;
 
 import com.dh.catalogservice.api.service.CatalogService;
 import com.dh.catalogservice.domain.model.Movie;
+import com.dh.catalogservice.dto.CatalogDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +23,12 @@ public class CatalogController {
 
 
     @GetMapping("/{genre}")
-    ResponseEntity<List<Movie>> getGenre(@PathVariable String genre) {
-
-        return ResponseEntity.ok().body(service.getMovieByGenre(genre));
+    ResponseEntity<CatalogDto> getGenre(@PathVariable String genre) {
+        List<Movie> movies = service.getMovieByGenre(genre);
+        if (movies.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(new CatalogDto(genre,movies));
     }
 
 }

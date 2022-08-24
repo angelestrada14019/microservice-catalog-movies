@@ -6,5 +6,5 @@ import com.dh.catalogservice.dto.CatalogDto;
 import java.util.List;
 
 public interface ICatalogService {
-    CatalogDto getMovieByGenre (String genre);
+    List<Movie> getMovieByGenre (String genre);
 }

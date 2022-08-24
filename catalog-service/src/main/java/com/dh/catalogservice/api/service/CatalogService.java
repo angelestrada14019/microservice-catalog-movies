@@ -15,9 +15,9 @@ public class CatalogService implements ICatalogService {
 
 
     @Override
-    public CatalogDto getMovieByGenre(String genre) {
+    public List<Movie> getMovieByGenre(String genre) {
         List<Movie> movies = movieFeignClient.getMovies(genre);
-        return new CatalogDto(genre,movies);
+        return movies;
     }
 
 
