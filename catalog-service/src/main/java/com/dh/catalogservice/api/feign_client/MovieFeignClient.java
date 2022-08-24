@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 
-@LoadBalancerClient(name = "movie-service",configuration = CustomLoadBalancerConfiguration.class)
+
 @FeignClient(name = "movie-service")
 public interface MovieFeignClient {
     @GetMapping("/movies/{genre}")

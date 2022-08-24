@@ -11,7 +11,7 @@ public class TestController {
     @Value("${message}")
     private String message;
 
-    @RequestMapping("/message")
+    @RequestMapping("/catalog/message")
     ResponseEntity<String> getMessage() {
         return ResponseEntity.ok().body(this.message);
     }
