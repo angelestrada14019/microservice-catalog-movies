@@ -20,13 +20,9 @@ spring:
           predicates:
             - Path=/catalog/**
             - Path=/message
-          filters:
-            - AddHeader=custom-user-header,custom-user-header-value
         - id: movie-service
           uri: lb://movie-service
           predicates:
             - Path=/movies/**
             - Path=/message
-          filters:
-              - AddHeader=custom-car-header,custom-car-header-value
 
