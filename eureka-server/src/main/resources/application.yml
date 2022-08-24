@@ -1,0 +1,11 @@
+
+#server:
+#  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+  config:
+    import: optional:configserver:${CONFIG_SERVER:http://localhost:8888}
+
+#---------------------------------------------------------------------
