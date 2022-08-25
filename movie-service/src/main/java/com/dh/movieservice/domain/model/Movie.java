@@ -33,4 +33,10 @@ public class Movie implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     private String urlStream;
 
+
+    public Movie(String name, String genre, String urlStream) {
+        this.name = name;
+        this.genre = genre;
+        this.urlStream = urlStream;
+    }
 }
