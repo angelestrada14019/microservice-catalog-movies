@@ -2,6 +2,8 @@ package com.dh.movieservice.api.controller;
 
 import com.dh.movieservice.api.service.MovieService;
 import com.dh.movieservice.domain.model.Movie;
+import com.dh.movieservice.utils.WrapperResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +25,16 @@ public class MovieController {
     }
 
     @GetMapping("/{genre}")
-    ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable String genre) {
-        return ResponseEntity.ok().body(service.findByGenre(genre));
+    ResponseEntity<WrapperResponse<List<Movie>>> getMovieByGenre(@PathVariable String genre) {
+        List<Movie> movies=service.findByGenre(genre);
+        if (movies.isEmpty()){
+            return new WrapperResponse<>(true,"No hay contenido",movies).createResponse(HttpStatus.OK);
+        }
+        return new WrapperResponse<>(true,"Succes",movies).createResponse(HttpStatus.OK);
     }
 
     @PostMapping("/save")
-    ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
-        return ResponseEntity.ok().body(service.save(movie));
+    ResponseEntity<WrapperResponse<Movie>> saveMovie(@RequestBody Movie movie) {
+        return new WrapperResponse<>(true, "Succes", service.save(movie)).createResponse(HttpStatus.OK);
     }
 }
