@@ -22,17 +22,19 @@ spring:
   rabbitmq:
     username: guest
     password: guest
-    host: localhost
+    host: rabbit-mq
     port: 5672
 
 queue:
   movie:
     name: movieQueue
+zipkin:
+  base-url: http://zipkin:9411/
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 

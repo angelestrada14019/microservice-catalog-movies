@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  serie-service:
+    build: ./serie-service
+    mem_limit: 512m
+    ports:
+      - "8083:8083"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+  movie-service:
+    build: ./movie-service
+    mem_limit: 512m
+    ports:
+      - "8084:8084"
+  catalog-service:
+    build: ./catalog-service
+    mem_limit: 512m
+    ports:
+      - "8085:8085"
+  gateway-server:
+    build: ./gateway-server
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+  config-server:
+    build: ./config-server
+    mem_limit: 512m
+    ports:
+      - "88:8888"
+  eureka-server:
+    build: ./eureka-server
+    mem_limit: 512m
+    ports:
+      - "8761:8761"
+mongodb:
+    image: mongo:4.4.2
+    mem_limit: 512m
+    ports:
+      - "27017:27017"
+    command: mongodb
+    healthcheck:
+      test: "mongo --eval 'db.stats().ok'"
+      interval: 5s
+      timeout: 2s
+      retries: 60
+mongodb2:
+    image: mongo:4.4.2
+    mem_limit: 512m
+    ports:
+      - "27017:27017"
+    command: mongodb
+    healthcheck:
+      test: "mongo --eval 'db.stats().ok'"
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
+rabbit-mq:
+  image: rabbitmq:3.8.14-management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+
+zipkin:
+  image: openzipkin/zipkin
+  ports:
+    - "9411:9411"
