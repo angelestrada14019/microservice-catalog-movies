@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2.1'
 
 services:
   serie-service:
@@ -9,21 +9,42 @@ services:
     depends_on:
       mongodb:
         condition: service_healthy
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
   movie-service:
     build: ./movie-service
     mem_limit: 512m
     ports:
       - "8084:8084"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
   catalog-service:
     build: ./catalog-service
     mem_limit: 512m
     ports:
       - "8085:8085"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      mongodb2:
+        condition: service_healthy
   gateway-server:
     build: ./gateway-server
     mem_limit: 512m
     ports:
       - "8080:8080"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
   config-server:
     build: ./config-server
     mem_limit: 512m
@@ -34,6 +55,9 @@ services:
     mem_limit: 512m
     ports:
       - "8761:8761"
+    depends_on:
+      config-server:
+        condition: service_healthy
   mongodb:
       image: mongo:4.4.2
       mem_limit: 512m
