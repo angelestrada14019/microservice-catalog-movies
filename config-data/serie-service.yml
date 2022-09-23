@@ -25,3 +25,24 @@ spring:
 queue:
   movie:
     name: serieQueue
+
+#actuator 
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+info:
+  name: serie-service
+  description: serie
+  version: 1.0.0
+  date: 2022-09-23

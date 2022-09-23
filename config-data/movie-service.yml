@@ -37,3 +37,24 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 message: hello from movie-service
+
+#actuator 
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+info:
+  name: movie-service
+  description: movie
+  version: 1.0.0
+  date: 2022-09-23

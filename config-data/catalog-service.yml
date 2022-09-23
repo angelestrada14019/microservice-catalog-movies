@@ -25,4 +25,81 @@ queue:
   movie:
     name: movieQueue
 
+#actuator 
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+info:
+  name: catalog-service
+  description: catalog
+  version: 1.0.0
+  date: 2022-09-23
+
+#circuit breaker
+resilience4j.circuitbreaker:
+    instances:
+        movieCB:
+            allowHealthIndicatorToFail: false
+            registerHealthIndicator: true
+            slidingWindowType: TIME_BASED
+            slidingWindowSize: 5
+            failureRateThreshold: 50
+            waitDurationInOpenState: 5s
+            permittedNumberOfCallsInHalfOpenState: 3
+            automaticTransitionFromOpenToHalfOpenEnabled: true
+        serieCB:
+            allowHealthIndicatorToFail: false
+            registerHealthIndicator: true
+            slidingWindowType: TIME_BASED
+            slidingWindowSize: 5
+            failureRateThreshold: 50
+            waitDurationInOpenState: 5s
+            permittedNumberOfCallsInHalfOpenState: 3
+            automaticTransitionFromOpenToHalfOpenEnabled: true
+        allCB:
+            allowHealthIndicatorToFail: false
+            registerHealthIndicator: true
+            slidingWindowType: TIME_BASED
+            slidingWindowSize: 5
+            failureRateThreshold: 50
+            waitDurationInOpenState: 5s
+            permittedNumberOfCallsInHalfOpenState: 3
+            automaticTransitionFromOpenToHalfOpenEnabled: true
+
+resilience4j.retry:
+    instances:
+        movieCB:
+            maxAttempts: 3
+            waitDuration: 1s
+            retryExceptions:
+              - org.springframework.web.client.HttpServerErrorException
+              - java.io.IOException
+              - feign.FeignException$InternalServerError
+            ignoreExceptions:
+        serieCB:
+            maxAttempts: 3
+            waitDuration: 1s
+            retryExceptions:
+              - org.springframework.web.client.HttpServerErrorException
+              - java.io.IOException
+              - feign.FeignException$InternalServerError
+        allCB:
+          maxAttempts: 3
+          waitDuration: 1s
+          retryExceptions:
+            - org.springframework.web.client.HttpServerErrorException
+            - java.io.IOException
+            - feign.FeignException$InternalServerError
+
 message: hello from catalog-service

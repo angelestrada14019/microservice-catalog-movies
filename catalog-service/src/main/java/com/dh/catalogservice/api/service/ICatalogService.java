@@ -11,4 +11,6 @@ import java.util.List;
 public interface ICatalogService extends GenericServiceAPI<Catalog,String> {
 
     Catalog findCatalogByGenre(String genre);
+    Movie saveMovie(Movie movie);
+    Serie saveSerie(Serie serie);
 }

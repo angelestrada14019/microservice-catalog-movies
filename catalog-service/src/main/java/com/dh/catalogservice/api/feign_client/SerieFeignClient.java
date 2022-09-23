@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "serie-service", url = "http://localhost:8083")
+@FeignClient(name = "serie-service")
 public interface SerieFeignClient {
 
     @GetMapping("/serie/{genre}")

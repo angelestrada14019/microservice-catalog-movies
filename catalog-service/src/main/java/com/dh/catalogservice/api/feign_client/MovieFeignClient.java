@@ -13,7 +13,7 @@ import java.util.List;
 
 
 
-@FeignClient(name = "movie-service",url = "http://localhost:8084")
+@FeignClient(name = "movie-service")
 public interface MovieFeignClient {
     @GetMapping("/movie/{genre}")
     List<Movie> getMovies(@PathVariable String genre);
