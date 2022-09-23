@@ -24,18 +24,18 @@ public class CatalogController {
 
 
     @GetMapping("/{genre}")
-    @Retry(name = "allCB")
-    @CircuitBreaker(name = "allCB", fallbackMethod = "fallBackSaveAll")
+//    @Retry(name = "allCB")
+//    @CircuitBreaker(name = "allCB", fallbackMethod = "fallBackGetAll")
     ResponseEntity<WrapperResponse<Catalog>> getGenre(@PathVariable String genre) {
         return new WrapperResponse<>(true, "Succes",
                 service.findCatalogByGenre(genre)).createResponse(HttpStatus.OK);
     }
-    private ResponseEntity<WrapperResponse<Catalog>> fallBackGetAll(@PathVariable String genre,RuntimeException e){
-        Catalog catalog = new Catalog();
-        return new WrapperResponse<>(false, "En estos momentos no " +
-                "se puede traer el catalogo con las peliculas y series, intentelo mas tarde",catalog)
-                .createResponse(HttpStatus.PARTIAL_CONTENT);
-    }
+//    private ResponseEntity<WrapperResponse<Catalog>> fallBackGetAll(@PathVariable String genre,RuntimeException e){
+//        Catalog catalog = new Catalog();
+//        return new WrapperResponse<>(false, "En estos momentos no " +
+//                "se puede traer el catalogo con las peliculas y series, intentelo mas tarde",catalog)
+//                .createResponse(HttpStatus.PARTIAL_CONTENT);
+//    }
     @PostMapping("/save")
     ResponseEntity<WrapperResponse<Catalog>> save(@RequestBody Catalog catalog) {
         return new WrapperResponse<>(true, "Succes",

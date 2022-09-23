@@ -67,15 +67,15 @@ resilience4j.circuitbreaker:
             waitDurationInOpenState: 5s
             permittedNumberOfCallsInHalfOpenState: 3
             automaticTransitionFromOpenToHalfOpenEnabled: true
-        allCB:
-            allowHealthIndicatorToFail: false
-            registerHealthIndicator: true
-            slidingWindowType: TIME_BASED
-            slidingWindowSize: 5
-            failureRateThreshold: 50
-            waitDurationInOpenState: 5s
-            permittedNumberOfCallsInHalfOpenState: 3
-            automaticTransitionFromOpenToHalfOpenEnabled: true
+        # allCB:
+        #     allowHealthIndicatorToFail: false
+        #     registerHealthIndicator: true
+        #     slidingWindowType: TIME_BASED
+        #     slidingWindowSize: 5
+        #     failureRateThreshold: 50
+        #     waitDurationInOpenState: 5s
+        #     permittedNumberOfCallsInHalfOpenState: 3
+        #     automaticTransitionFromOpenToHalfOpenEnabled: true
 
 resilience4j.retry:
     instances:
@@ -94,12 +94,12 @@ resilience4j.retry:
               - org.springframework.web.client.HttpServerErrorException
               - java.io.IOException
               - feign.FeignException$InternalServerError
-        allCB:
-          maxAttempts: 3
-          waitDuration: 1s
-          retryExceptions:
-            - org.springframework.web.client.HttpServerErrorException
-            - java.io.IOException
-            - feign.FeignException$InternalServerError
+        # allCB:
+        #   maxAttempts: 3
+        #   waitDuration: 1s
+        #   retryExceptions:
+        #     - org.springframework.web.client.HttpServerErrorException
+        #     - java.io.IOException
+        #     - feign.FeignException$InternalServerError
 
 message: hello from catalog-service
