@@ -1,7 +1,12 @@
+server:
+  port: 8085
 spring:
   application:
     name: catalog-service
   config:
     import: optional:configserver:${CONFIG_SERVER:http://localhost:8888}
+
+
+message: hello from catalog-service
 
 

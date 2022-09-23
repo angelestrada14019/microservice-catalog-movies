@@ -1,0 +1,27 @@
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+message: hello from serie-service
+
+
+server:
+  port: 8083
+spring:
+  data:
+    mongodb:
+      database: ajeaPeli
+      port: 27017
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+
+queue:
+  movie:
+    name: serieQueue
