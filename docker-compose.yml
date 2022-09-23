@@ -34,34 +34,36 @@ services:
     mem_limit: 512m
     ports:
       - "8761:8761"
-mongodb:
-    image: mongo:4.4.2
-    mem_limit: 512m
-    ports:
-      - "27017:27017"
-    healthcheck:
-      test: "mongo --eval 'db.stats().ok'"
-      interval: 5s
-      timeout: 2s
-      retries: 60
-mongodb2:
-    image: mongo:4.4.2
-    mem_limit: 512m
-    ports:
-      - "27017:27017"
-    healthcheck:
-      test: "mongo --eval 'db.stats().ok'"
-      interval: 5s
-      timeout: 2s
-      retries: 60
+  mongodb:
+      image: mongo:4.4.2
+      mem_limit: 512m
+      ports:
+        - "27017:27017"
+      command: mongodb
+      healthcheck:
+        test: "mongo --eval 'db.stats().ok'"
+        interval: 5s
+        timeout: 2s
+        retries: 60
+  mongodb2:
+      image: mongo:4.4.2
+      mem_limit: 512m
+      ports:
+        - "27017:27017"
+      command: mongodb
+      healthcheck:
+        test: "mongo --eval 'db.stats().ok'"
+        interval: 5s
+        timeout: 2s
+        retries: 60
 
-rabbit-mq:
-  image: rabbitmq:3.8.14-management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
+  rabbit-mq:
+    image: rabbitmq:3.8.14-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
-zipkin:
-  image: openzipkin/zipkin
-  ports:
-    - "9411:9411"
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
