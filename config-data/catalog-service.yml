@@ -2,7 +2,7 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
@@ -14,11 +14,11 @@ spring:
     mongodb:
       database: ajeaPeli2
       port: 27017
-      host: mongodb2
+      host: localhost
   rabbitmq:
     username: guest
     password: guest
-    host: rabbit-mq
+    host: localhost
     port: 5672
 queue:
   serie:
@@ -26,7 +26,7 @@ queue:
   movie:
     name: movieQueue
 zipkin:
-  base-url: http://zipkin:9411/
+  base-url: http://localhost:9411/
 
 #actuator 
 management:
